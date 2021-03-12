@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LabWork_Classes
 {
-    public class Hexagon
+    public class Hexagon : IComparable<Hexagon>
     {
         public double Side { get; }
         public double Perimeter { get => GetPerimeter(); }
@@ -14,10 +15,6 @@ namespace LabWork_Classes
                 throw new ArgumentException("Tried to create hexagon with invalid Side value.");
             }
             Side = side;
-        }
-        private Hexagon()
-        {
-            throw new ArgumentException("Tried to use default constructor");
         }
 
         public static bool CanExist(Hexagon hex)
@@ -38,6 +35,31 @@ namespace LabWork_Classes
             //x - длина ребра
             //Площадь шестиугольника = (3 * √3 * x²)/2
             return 3d * Math.Sqrt(3) * Math.Pow(Side, 2d) / 2d;
+        }
+
+        public int CompareTo([AllowNull] Hexagon other)
+        {
+            if (other == null)
+                return 1;
+            return Side.CompareTo(other.Side);
+        }
+        public static bool operator >(Hexagon hex1, Hexagon hex2)
+        {
+            return hex1.CompareTo(hex2) > 0;
+        }
+
+        public static bool operator <(Hexagon hex1, Hexagon hex2)
+        {
+            return hex1.CompareTo(hex2) < 0;
+        }
+        public static bool operator >=(Hexagon hex1, Hexagon hex2)
+        {
+            return hex1.CompareTo(hex2) >= 0;
+        }
+
+        public static bool operator <=(Hexagon hex1, Hexagon hex2)
+        {
+            return hex1.CompareTo(hex2) <= 0;
         }
     }
 }
