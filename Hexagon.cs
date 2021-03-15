@@ -16,6 +16,10 @@ namespace LabWork_Classes
             }
             Side = side;
         }
+        public override string ToString()
+        {
+            return $"Side: {Side}, Perimeter: {Perimeter}, Area: {Area:F2}";
+        }
 
         public static bool CanExist(Hexagon hex)
         {
@@ -37,7 +41,8 @@ namespace LabWork_Classes
             return 3d * Math.Sqrt(3) * Math.Pow(Side, 2d) / 2d;
         }
 
-        public int CompareTo([AllowNull] Hexagon other)
+
+        public int CompareTo([AllowNull] Hexagon other) //Сравнение по длине ребра
         {
             if (other == null)
                 return 1;
