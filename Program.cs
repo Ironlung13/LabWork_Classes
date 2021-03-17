@@ -4,9 +4,8 @@ namespace LabWork_Classes
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-        EntryPoint:
             Console.WriteLine("Create 2 hexagons.");
             Console.Write("Enter first hexagon side value\n=> ");
             double size;
@@ -20,8 +19,8 @@ namespace LabWork_Classes
             {
                 hex1 = new Hexagon(size);
                 Console.WriteLine($"Can hex1 exist? => {Hexagon.CanExist(hex1)}");
-                Console.WriteLine($"hex1 Perimeter using method => {hex1.GetPerimeter()}");
-                Console.WriteLine($"hex1 Area using property => {hex1.Area}");
+                Console.WriteLine($"hex1 Perimeter using method => {hex1.GetPerimeter():F2}");
+                Console.WriteLine($"hex1 Area using property => {hex1.Area:F2}");
             }
             catch (ArgumentException ex)
             {
@@ -40,8 +39,8 @@ namespace LabWork_Classes
             {
                 hex2 = new Hexagon(size);
                 Console.WriteLine($"Can hex2 exist? => {Hexagon.CanExist(hex2)}");
-                Console.WriteLine($"hex2 Perimeter using method => {hex2.GetPerimeter()}");
-                Console.WriteLine($"hex2 Area using property => {hex2.Area}");
+                Console.WriteLine($"hex2 Perimeter using method => {hex2.GetPerimeter():F2}");
+                Console.WriteLine($"hex2 Area using property => {hex2.Area:F2}");
             }
             catch (ArgumentException ex)
             {
@@ -55,9 +54,12 @@ namespace LabWork_Classes
             {
                 case "q":
                 case "Q":
+                    Console.Clear();
                     return;
                 default:
-                    goto EntryPoint;
+                    Console.Clear();
+                    Main();
+                    return;
             }
         }
     }
